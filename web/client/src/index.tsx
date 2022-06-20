@@ -1,14 +1,10 @@
 import { SamenClient } from "@samen/client"
 
-const client = new SamenClient(window.fetch, process.env.REACT_APP_SAMEN_URL)
+const fetch = window.fetch.bind(window)
+const client = new SamenClient(fetch, process.env.REACT_APP_SAMEN_URL)
 
 async function run() {
-  const x = await client.articleService.get("1", false)
-  const y = await client.articleService4.get("1", true)
-  const z = await client.xarticleService4.get("1", true)
-  const sjaak = await client.xysjaakService3.get("sjaak")
-  client.xysjaakService3.aad()
-  const xxx = await client.xxsjaakService4.update()
+  console.log(await client.articleService.get("1"))
 }
 
 export default run()
