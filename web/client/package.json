@@ -14,8 +14,8 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "rescripts start",
+    "build": "rescripts build",
     "watch": "samen-client watch"
   },
   "eslintConfig": {
@@ -32,5 +32,25 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.16",
+    "@rescripts/rescript-use-babel-config": "^0.0.12"
+  },
+  "rescripts": [
+    [
+      "use-babel-config",
+      {
+        "presets": [
+          "react-app",
+          [
+            "@babel/preset-typescript",
+            {
+              "allowNamespaces": true
+            }
+          ]
+        ]
+      }
+    ]
+  ]
 }
