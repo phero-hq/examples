@@ -1,23 +1,11 @@
 import { useCallback, useEffect, useState } from "react"
-import { NoPostsFoundError, Post, SamenClient } from "./samen.generated"
-
-const samen = new SamenClient(window.fetch.bind(this))
 
 function App() {
-  const [posts, setPosts] = useState<Post[]>()
+  const [posts, setPosts] = useState<any[]>()
   const [errorMessage, setErrorMessage] = useState<string>()
 
   const loadPosts = useCallback(async () => {
-    try {
-      const newPosts = await samen.postService.getPosts()
-      setPosts(newPosts)
-    } catch (error) {
-      if (error instanceof NoPostsFoundError) {
-        setErrorMessage("Be the first to post something here!")
-      } else {
-        setErrorMessage("Something went wrong")
-      }
-    }
+    // ..
   }, [])
 
   useEffect(() => {
@@ -31,7 +19,7 @@ function App() {
     <div>
       {posts.map((post) => (
         <div key={post.id}>
-          <p>{post.author.name}</p>
+          <p>{post.author.userName}</p>
           <p>{post.body}</p>
         </div>
       ))}

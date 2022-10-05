@@ -1,5 +1,3 @@
-import { createService } from "@samen/server"
-
 interface Post {
   id: string
   body: string
@@ -28,14 +26,3 @@ let posts: Post[] = [
     author: { id: "author-3", name: "Jasper" },
   },
 ]
-
-class NoPostsFoundError extends Error {}
-
-async function getPosts(): Promise<Post[]> {
-  if (posts.length === 0) {
-    throw new NoPostsFoundError()
-  }
-  return posts
-}
-
-export const postService = createService({ getPosts })
