@@ -1,3 +1,5 @@
+import { createService } from "@samen/server"
+
 interface Post {
   id: string
   body: string
@@ -26,3 +28,12 @@ let posts: Post[] = [
     author: { id: "author-3", name: "Jasper" },
   },
 ]
+
+class CustomError extends Error {}
+
+async function getPosts(): Promise<Post[]> {
+  throw new CustomError()
+  return posts
+}
+
+export const postService = createService({ getPosts })

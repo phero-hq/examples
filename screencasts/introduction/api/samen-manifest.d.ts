@@ -9,7 +9,7 @@ export declare namespace domain {
             body: string;
             author: domain.v_1_0_0.User;
         }
-        class NoPostsFoundError extends Error {
+        class CustomError extends Error {
             constructor(message: string);
         }
     }
