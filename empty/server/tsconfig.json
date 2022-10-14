@@ -72,5 +72,5 @@
   },
 
   // TODO: This prevents an infinite loop, maybe we should generate it at a different location?
-  "exclude": ["samen-manifest.d.ts"]
+  "exclude": ["phero-manifest.d.ts"]
 }

@@ -1,9 +1,9 @@
 import {
   createService,
-  SamenContext,
-  SamenNextFunction,
-  SamenParams,
-} from "@samen/server"
+  PheroContext,
+  PheroNextFunction,
+  PheroParams,
+} from "@phero/server"
 
 interface Article {
   id: string
@@ -17,7 +17,7 @@ interface User {
 
 async function getArticle(
   id: string,
-  context: SamenContext<{ user: User }>,
+  context: PheroContext<{ user: User }>,
 ): Promise<Article> {
   return {
     id,
@@ -41,9 +41,9 @@ function validateIdToken(idToken: string): User {
 }
 
 async function requireUser(
-  params: SamenParams,
-  context: SamenContext<{ idToken: string }>,
-  next: SamenNextFunction<{ user: User }>,
+  params: PheroParams,
+  context: PheroContext<{ idToken: string }>,
+  next: PheroNextFunction<{ user: User }>,
 ) {
   const user = validateIdToken(context.idToken)
   await next({ user })

@@ -3,8 +3,8 @@
   "version": "0.8.0",
   "private": true,
   "dependencies": {
-    "@samen/client": "file:../../../samen/packages/client",
-    "@samen/core": "file:../../../samen/packages/core",
+    "@phero/client": "file:../../../phero/packages/client",
+    "@phero/core": "file:../../../phero/packages/core",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
@@ -16,7 +16,7 @@
   "scripts": {
     "start": "rescripts start",
     "build": "rescripts build",
-    "watch": "samen-client watch"
+    "watch": "phero-client watch"
   },
   "eslintConfig": {
     "extends": "react-app"

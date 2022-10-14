@@ -7,12 +7,12 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "tsc",
-    "start": "samen-server serve"
+    "start": "phero-server serve"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@samen/server": "file:../../../samen/packages/server",
+    "@phero/server": "file:../../../phero/packages/server",
     "@types/node": "^14.14.30",
     "typescript": "^4.7.4"
   }
