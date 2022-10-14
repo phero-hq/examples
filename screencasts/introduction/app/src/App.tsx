@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
-import { CustomError, Post, SamenClient } from "./samen.generated"
+import { CustomError, Post, PheroClient } from "./phero.generated"
 
-const samen = new SamenClient(window.fetch.bind(this))
+const phero = new PheroClient(window.fetch.bind(this))
 
 function App() {
   const [posts, setPosts] = useState<Post[]>()
@@ -9,7 +9,7 @@ function App() {
 
   const loadPosts = useCallback(async () => {
     try {
-      const newPosts = await samen.postService.getPosts()
+      const newPosts = await phero.postService.getPosts()
       setPosts(newPosts)
     } catch (error) {
       if (error instanceof CustomError) {

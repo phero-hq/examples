@@ -1,4 +1,4 @@
-import { createService } from "@samen/server"
+import { createService } from "@phero/server"
 
 interface Post {
   id: string
