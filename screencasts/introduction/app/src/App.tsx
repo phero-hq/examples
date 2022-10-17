@@ -1,11 +1,23 @@
 import { useCallback, useEffect, useState } from "react"
+import { NoPostsYetError, PheroClient, Post } from "./phero.generated"
+
+const phero = new PheroClient(window.fetch.bind(this))
 
 function App() {
-  const [posts, setPosts] = useState<any[]>()
+  const [posts, setPosts] = useState<Post[]>()
   const [errorMessage, setErrorMessage] = useState<string>()
 
   const loadPosts = useCallback(async () => {
-    // ...
+    try {
+      const newPosts = await phero.postService.getPosts()
+      setPosts(newPosts)
+    } catch (error) {
+      if (error instanceof NoPostsYetError) {
+        setErrorMessage("Be the first one to post!")
+      } else {
+        setErrorMessage("whoops")
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -19,7 +31,7 @@ function App() {
     <div>
       {posts.map((post) => (
         <div key={post.id}>
-          <p>{post.author.userName}</p>
+          <p>{post.author.name}</p>
           <p>{post.body}</p>
         </div>
       ))}

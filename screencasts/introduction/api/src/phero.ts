@@ -1,3 +1,5 @@
+import { createService } from "@phero/server"
+
 interface Post {
   id: string
   body: string
@@ -26,3 +28,12 @@ let posts: Post[] = [
     author: { id: "author-3", name: "Jasper" },
   },
 ]
+
+class NoPostsYetError extends Error {}
+
+async function getPosts(): Promise<Post[]> {
+  if (posts.length == 0) throw new NoPostsYetError()
+  return posts
+}
+
+export const postService = createService({ getPosts })
