@@ -15,7 +15,6 @@ const usersRouter = t.router({
   updateProfile: t.procedure
     .input(z.object({ userId: z.string(), profile: UserProfile }))
     .mutation(async (req) => {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
       const index = userDb.findIndex((u) => u.id === req.input.userId)
       if (index < 0) throw new TRPCError({ code: "NOT_FOUND" })
       userDb[index].profile = req.input.profile
@@ -23,17 +22,13 @@ const usersRouter = t.router({
   updateSettings: t.procedure
     .input(z.object({ userId: z.string(), settings: UserSettings }))
     .mutation(async (req) => {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
       const index = userDb.findIndex((u) => u.id === req.input.userId)
       if (index < 0) throw new TRPCError({ code: "NOT_FOUND" })
       userDb[index].settings = req.input.settings
     }),
 })
 
-const appRouter = t.router({
-  users: usersRouter,
-})
-
+const appRouter = t.router({ users: usersRouter })
 export type AppRouter = typeof appRouter
 
 const trpcHandler = createHTTPHandler({
