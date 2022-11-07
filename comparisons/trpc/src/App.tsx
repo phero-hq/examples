@@ -1,24 +1,31 @@
 import { useCallback, useState } from "react"
-import useSWR from "swr"
 import "./App.css"
-import {
-  PheroClient,
-  UserNotFoundError,
-  UserProfile,
-  UserSettings,
-} from "./phero.generated"
 import UserProfileForm from "./UserProfileForm"
 import UserSettingsForm from "./UserSettingsForm"
+import useSWR from "swr"
+import { createTRPCProxyClient, httpBatchLink } from "@trpc/client"
+import type { AppRouter } from "./server/trpc"
+import { User, UserProfile, UserSettings } from "./server/users"
+import { TRPCError } from "@trpc/server"
 
-const phero = new PheroClient(window.fetch.bind(this))
+const trpc = createTRPCProxyClient<AppRouter>({
+  links: [
+    httpBatchLink({
+      url: "http://localhost:8080",
+    }),
+  ],
+})
+
 const userId = "user-0"
 
 export default function App() {
-  const { data, error, mutate } = useSWR("user", () => phero.users.get(userId))
+  const { data, error, mutate } = useSWR("user", () =>
+    trpc.users.get.query(userId),
+  )
   const [isSubmitting, setSubmitting] = useState<"profile" | "settings">()
 
   const handleSubmitError = useCallback((error: unknown) => {
-    if (error instanceof UserNotFoundError) {
+    if (error instanceof TRPCError && error.code === "NOT_FOUND") {
       alert(`Could not get user by id ${userId}`)
     } else {
       alert("Something went wrong")
@@ -30,7 +37,7 @@ export default function App() {
       try {
         if (!data || isSubmitting) return
         setSubmitting("profile")
-        await phero.users.updateProfile(userId, profile)
+        await trpc.users.updateProfile.mutate({ userId, profile })
         await mutate({ ...data, profile }, { revalidate: false })
       } catch (error) {
         handleSubmitError(error)
@@ -46,7 +53,7 @@ export default function App() {
       try {
         if (!data || isSubmitting) return
         setSubmitting("settings")
-        await phero.users.updateSettings(userId, settings)
+        await trpc.users.updateSettings.mutate({ userId, settings })
         await mutate({ ...data, settings }, { revalidate: false })
       } catch (error) {
         handleSubmitError(error)
