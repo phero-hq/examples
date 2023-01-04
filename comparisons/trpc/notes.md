@@ -1,0 +1,10 @@
+- api en app in hetzelfde project
+- `users.get.query()`
+- users.get => optional user
+- server daadwerkelijk runnen is een hoop uitzoekwerk (CORS)
+- multiple arguments?
+- type defs in IDE zijn lastig te lezen
+- vaste set aan errors
+- auto-refresh van server-code
+- direct te importeren types, geen restart-ts-server
+- zod's parse geeft zelf een error

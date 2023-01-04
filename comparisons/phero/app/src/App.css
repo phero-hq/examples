@@ -1,0 +1,56 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.App button {
+  margin: 16px;
+}
+
+.App form {
+  border: none;
+  background: rgb(5, 5, 5);
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.2s;
+}
+
+.App form.isSubmitting {
+  opacity: 0.5;
+}
+
+.App fieldset {
+  border: none;
+}
+
+.App label {
+  margin: 0 8px;
+}
+
+.App input {
+  border-radius: 8px;
+  border: none;
+  padding: 8px;
+}
+
+.App button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: rgb(50, 50, 50);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.App button:focus,
+.App button:focus-visible {
+  background-color: rgb(60, 60, 60);
+}
