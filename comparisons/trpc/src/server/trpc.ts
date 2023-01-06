@@ -2,16 +2,19 @@ import { initTRPC, TRPCError } from "@trpc/server"
 import { createHTTPHandler } from "@trpc/server/adapters/standalone"
 import http from "http"
 import { z } from "zod"
-import { userDb, UserProfile, UserSettings } from "./users"
+import { User, userDb, UserProfile, UserSettings } from "./users"
 
 const t = initTRPC.create()
 
 const usersRouter = t.router({
-  get: t.procedure.input(String).query((req) => {
-    const user = userDb.find((u) => u.id === req.input)
-    if (!user) throw new TRPCError({ code: "NOT_FOUND" })
-    return user
-  }),
+  get: t.procedure
+    .input(String)
+    .output(User)
+    .query((req) => {
+      const user = userDb.find((u) => u.id === req.input)
+      if (!user) throw new TRPCError({ code: "NOT_FOUND" })
+      return user
+    }),
   updateProfile: t.procedure
     .input(z.object({ userId: z.string(), profile: UserProfile }))
     .mutation(async (req) => {
