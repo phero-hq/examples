@@ -1,0 +1,8 @@
+{
+  "name": "pnpm",
+  "workspaces": [
+    "clients/*",
+    "server"
+  ],
+  "version": "1.0.0"
+}

@@ -16,8 +16,8 @@ interface User {
 }
 
 async function getArticle(
-  id: string,
   context: PheroContext<{ user: User }>,
+  id: string,
 ): Promise<Article> {
   return {
     id,

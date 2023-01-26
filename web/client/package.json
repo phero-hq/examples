@@ -3,7 +3,7 @@
   "version": "0.8.0",
   "private": true,
   "dependencies": {
-    "@phero/client": "file:../../../phero/packages/client",
+    "@phero/client": "^0.9.13",
     "@phero/core": "file:../../../phero/packages/core",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
@@ -11,7 +11,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
+    "typescript": "^4.8.4"
   },
   "scripts": {
     "start": "rescripts start",
