@@ -3,7 +3,7 @@
   "version": "0.8.0",
   "private": true,
   "dependencies": {
-    "@phero/client": "file:../../../phero/packages/client",
+    "@phero/client": "^0.9.13",
     "@phero/core": "file:../../../phero/packages/core",
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",

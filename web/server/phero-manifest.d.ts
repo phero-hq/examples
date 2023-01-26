@@ -1,35 +1,13 @@
-export declare namespace phero {
-  type PheroContext<T> = T
+export declare namespace domain {
+    namespace v_1_0_0 {
+        interface Article {
+            id: string;
+            text: string;
+        }
+    }
 }
 export declare namespace articleService {
-  namespace v_1_0_0 {
-    interface User {
-      uid: string
-      name: string
+    namespace v_1_0_0 {
+        function getArticle(id: string): Promise<domain.v_1_0_0.Article>;
     }
-    interface Article {
-      id: string
-      text: string
-    }
-    function getArticle(
-      context: phero.PheroContext<{
-        idToken: string
-      }>,
-      id: string,
-    ): Promise<Article>
-    function createArticle(
-      context: phero.PheroContext<{
-        idToken: string
-      }>,
-      id: string,
-      text: string,
-    ): Promise<Article>
-    function saveArticle(
-      context: phero.PheroContext<{
-        idToken: string
-      }>,
-      id: string,
-      text: string,
-    ): Promise<Article>
-  }
 }
