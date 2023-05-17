@@ -1,0 +1,19 @@
+{
+  "name": "example-project-server",
+  "version": "0.8.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "tsc",
+    "start": "phero-server serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@phero/server": "^0.10.4",
+    "@types/node": "^14.14.30",
+    "typescript": "^4.7.4"
+  }
+}
